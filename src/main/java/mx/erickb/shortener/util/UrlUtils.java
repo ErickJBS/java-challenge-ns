@@ -5,8 +5,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class UrlUtils {
 
-    private static final String ALPHA_DICT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String ALPHANUMERIC_DICT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    private static final String GOOGLE_DICT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String YAHOO_DICT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+    private static final String GENERIC_DICT = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ";
     private static final int GOOGLE_ALIAS_LENGTH = 5;
     private static final int YAHOO_ALIAS_LENGTH = 7;
 
@@ -21,17 +22,17 @@ public class UrlUtils {
     }
 
     private String googleAliasFormat(String url) {
-        return getAlias(url, ALPHA_DICT, GOOGLE_ALIAS_LENGTH);
+        return getAlias(url, GOOGLE_DICT, GOOGLE_ALIAS_LENGTH);
     }
 
     private String yahooAliasFormat(String url) {
-        return getAlias(url, ALPHANUMERIC_DICT, YAHOO_ALIAS_LENGTH);
+        return getAlias(url, YAHOO_DICT, YAHOO_ALIAS_LENGTH);
     }
 
     private String genericAliasFormat(String url) {
         StringBuilder builder = new StringBuilder();
         for (char c : url.toCharArray()) {
-            if (ALPHA_DICT.contains("" + c)) {
+            if (GENERIC_DICT.contains("" + c)) {
                 builder.append(c);
             }
         }
