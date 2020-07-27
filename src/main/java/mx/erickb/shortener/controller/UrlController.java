@@ -28,7 +28,9 @@ public class UrlController {
     String getUrl(@PathVariable String alias, HttpServletResponse httpResponse) throws IOException {
         String url = this.urlAliasService.getUrl(alias);
         if(url != null) {
-            // TODO: Fix redirect
+            if (!url.matches("^https?.*")) {
+                url = "http://" + url;
+            }
             httpResponse.sendRedirect(url);
             return null;
         } else {
